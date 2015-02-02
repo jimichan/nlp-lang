@@ -68,7 +68,7 @@ public class DicManager {
 			while ((temp = reader.readLine()) != null) {
 				strs = temp.trim().split("\t");
 				if (strs.length != 2) {
-					throw new RuntimeException("error arg by init " + dicName + "\t" + strs.length);
+					throw new RuntimeException("error arg by init " + dicName + "\t" + strs.length +" "+temp);
 				}
 				Library.insertWord(forest, new Value(strs[1], strs[0]));
 			}
