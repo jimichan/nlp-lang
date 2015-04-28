@@ -22,14 +22,14 @@ public class Branch implements WoodInterface {
 		this.param = param;
 	}
 
-	public WoodInterface add(WoodInterface branch) {
+	public WoodInterface add(WoodInterface toInsert) {
 		if (branches == null) {
 			branches = new WoodInterface[0];
 		}
-		int bs = AnsjArrays.binarySearch(branches, branch.getC());
+		int bs = AnsjArrays.binarySearch(branches, toInsert.getC());
 		if (bs >= 0) {
 			this.branch = this.branches[bs];
-			switch (branch.getStatus()) {
+			switch (toInsert.getStatus()) {
 				case -1:
 					this.branch.setStatus(1);
 					break;
@@ -42,7 +42,7 @@ public class Branch implements WoodInterface {
 					if (this.branch.getStatus() != 3) {
 						this.branch.setStatus(2);
 					}
-					this.branch.setParam(branch.getParams());
+					this.branch.setParam(toInsert.getParams());
 			}
 			return this.branch;
 		} else {
@@ -50,9 +50,9 @@ public class Branch implements WoodInterface {
 			int insert = -(bs + 1);
 			System.arraycopy(branches, 0, newBranches, 0, insert);
 			System.arraycopy(branches, insert, newBranches, insert + 1, branches.length - insert);
-			newBranches[insert] = branch;
+			newBranches[insert] = toInsert;
 			branches = newBranches;
-			return branch;
+			return toInsert;
 		}
 	}
 
